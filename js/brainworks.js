@@ -25,7 +25,6 @@
         // hamburgerMenu('.js-menu', '.js-hamburger', '.js-menu-close');
         anotherHamburgerMenu('.js-menu', '.js-hamburger', '.js-menu-close');
         $(window).on("resize", function (e) {
-            console.log("resized!")
             if (window.innerWidth >= 630) {
                 removeAllStyles($(".js-menu"));
             }
@@ -84,7 +83,9 @@
             close: $(closeTrigger)
         }
 
-        Elements.button.add(Elements.close).on('click', function () {
+        Elements.button.add(Elements.close).on('click', function (ev) {
+            ev.preventDefault()
+            ev.stopPropagation()
             Elements.menu.toggleClass('is-active');
         })
         var arrowOpener = function (parent) {
